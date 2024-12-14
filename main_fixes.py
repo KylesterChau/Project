@@ -7,7 +7,8 @@ def main():
     elif load.lower() != 'y' or load.lower() != 'n':
         Print('Incorrect Input')
     while True:
-        choice = print_menu()
+        print_menu()
+        choice = input("Enter Your Selection: ")
         if choice == 1:
             client_name = input("Enter client name: ")
             client_phone = input("Enter client phone: ")

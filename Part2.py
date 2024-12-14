@@ -130,18 +130,20 @@ def save_appointments(appointments):
 def main():
     """Main function to run the appointment management system."""
     appointments = create_weekly_calendar()
-
-    if input("Load existing appointments? (y/n): ").lower() == 'y':
+    load = input("Load existing appointments? (y/n): ")
+    if load.lower() == 'y':
         load_scheduled_appointments(appointments)
-
+    elif load.lower() != 'y' or load.lower() != 'n':
+        Print('Incorrect Input')
     while True:
-        choice = print_menu()
+        print_menu()
+        choice = input("Enter Your Selection: ")
         if choice == 1:
             client_name = input("Enter client name: ")
             client_phone = input("Enter client phone: ")
             appt_type = int(input("Enter appointment type (1: Mens Cut, 2: Ladies Cut, 3: Mens Colouring, 4: Ladies Colouring): "))
-            day = input("Enter day: ")
-            hour = int(input("Enter start hour: "))
+            day = input("Enter day of the week: ")
+            hour = int(input("Enter start hour(24 hours clock): "))
             
             appt = find_appointment(appointments, day, hour)
             if appt and appt.get_appt_type() == 0:
@@ -182,6 +184,8 @@ def main():
                 save_appointments(appointments)
             print("Goodbye!")
             break
+        else:
+            print("Incorrect Input")
 
 if __name__ == "__main__":
     main()
